@@ -1,0 +1,10 @@
+function getWeather(){
+
+}
+
+
+
+
+
+
+getWeather()
