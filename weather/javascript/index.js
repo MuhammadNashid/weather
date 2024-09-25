@@ -32,8 +32,34 @@ else if(data.weather[0].main=="Clear"){
     weatherIcon.src="./images/clearicon1.webp"
 }
 document.querySelector(".weather").style.display="block"
+changeBackground(data.weather[0].main);
+}
+
+function changeBackground(weatherCondition) {
+    let backgroundImage;
+    
+    switch (weatherCondition) {
+        case 'Clear':
+            backgroundImage = url("./images/clearbg.jpg");
+            break;
+        case 'Clouds':
+            backgroundImage = url("./images/cloudbg.jpg");
+            break;
+        case 'Rain':
+            backgroundImage = url("./images/rainbg.jpg");
+            break;
+        case 'Sunny':
+            backgroundImage = url("./images/sunny.avif");
+            break;
+        default:
+            backgroundImage = url("./images/rainicon.png");
+            break;
+    }
+
+    document.body.style.backgroundImage = backgroundImage;
 
 }
+
 searchBtn.addEventListener("click",()=>{
     checkweather(searchBox.value)
 })
