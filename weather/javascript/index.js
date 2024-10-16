@@ -1,6 +1,8 @@
 const apikey = "1bf9fbe3c401b0c2f1f2d02bd26ce1dc"
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
+
+
 const searchBox=document.querySelector(".search input")
 const searchBtn=document.querySelector(".search button")
 const weatherIcon=document.querySelector(".weather-icon")
@@ -32,34 +34,36 @@ else if(data.weather[0].main=="Clear"){
     weatherIcon.src="./images/clearicon1.webp"
 }
 document.querySelector(".weather").style.display="block"
-changeBackground(data.weather[0].main);
+ changeBackground(data.weather[0].main);
 }
 
-function changeBackground(weatherCondition) {
-    let backgroundImage;
-    
-    switch (weatherCondition) {
-        case 'Clear':
-            backgroundImage = url("./images/clearbg.jpg");
-            break;
-        case 'Clouds':
-            backgroundImage = url("./images/cloudbg.jpg");
-            break;
-        case 'Rain':
-            backgroundImage = url("./images/rainbg.jpg");
-            break;
-        case 'Sunny':
-            backgroundImage = url("./images/sunny.avif");
-            break;
-        default:
-            backgroundImage = url("./images/rainicon.png");
-            break;
-    }
-
-    document.body.style.backgroundImage = backgroundImage;
-
-}
 
 searchBtn.addEventListener("click",()=>{
     checkweather(searchBox.value)
 })
+
+
+
+.then(response => response.json())
+  .then(data => {
+    const weatherCondition = data.weather[0].main; // Example: 'Clear', 'Rain'
+    const body = document.body;
+
+    switch (weatherCondition) {
+      case 'Clear':
+        body.style.backgroundImage = "url('clearbg.jpg')";
+        break;
+      case 'Rain':
+        body.style.backgroundImage = "url('rainbg.jpg')";
+        break;
+      case 'Clouds':
+        body.style.backgroundImage = "url('cloudbg.jpg')";
+        break;
+      case 'Snow':
+        body.style.backgroundImage = "url('sunny.avif')";
+        break;
+      // Add more cases as needed
+      default:
+        body.style.backgroundImage = "url('pngtree-vector-cloud-icon-png-image_939423.jpg')";
+    }
+  });
